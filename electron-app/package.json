@@ -1,0 +1,73 @@
+{
+  "name": "electron-app",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "An Electron application with Vue",
+  "main": "./out/main/index.js",
+  "author": "example.com",
+  "homepage": "https://electron-vite.org",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint --cache .",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev --watch",
+    "build": "electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.2",
+    "@electron-toolkit/utils": "^4.0.0",
+    "axios": "^1.11.0",
+    "element-plus": "^2.10.4",
+    "html2canvas": "^1.4.1",
+    "path-browserify": "^1.0.1",
+    "pinia": "^3.0.3",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@electron-toolkit/eslint-config": "^2.0.0",
+    "@electron-toolkit/eslint-config-prettier": "^3.0.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "electron": "^37.2.3",
+    "electron-builder": "^25.1.8",
+    "electron-rebuild": "^3.2.9",
+    "electron-vite": "^4.0.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-vue": "^10.3.0",
+    "prettier": "^3.6.2",
+    "sass": "^1.89.2",
+    "vite": "^7.0.5",
+    "vue": "^3.5.17",
+    "vue-eslint-parser": "^10.2.0"
+  },
+  "build": {
+    "appId": "xxxxxxx",
+    "productName": "大大屏",
+    "copyright": "Copyright © 2024 ${author}",
+    "win": {
+      "icon": "./favicon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_setup_${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./favicon.ico",
+      "uninstallerIcon": "./favicon.ico",
+      "installerHeaderIcon": "./favicon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": false
+    }
+  }
+}

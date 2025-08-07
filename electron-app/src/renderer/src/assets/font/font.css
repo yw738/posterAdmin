@@ -1,0 +1,29 @@
+/* cn */
+@font-face {
+    font-family: 'AlibabaPuHuiTi-Bold';
+    src: url('./Alibaba-PuHuiTi-Bold.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AlibabaPuHuiTi-Heavy';
+    src: url('./Alibaba-PuHuiTi-Heavy.otf');
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* en */
+@font-face {
+    font-family: 'AlibabaSans-Heavy';
+    src: url('./AlibabaSans-Heavy.otf');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AlibabaSans-Black';
+    src: url('./AlibabaSans-Black.otf');
+    font-weight: 900;
+    font-style: normal;
+}
