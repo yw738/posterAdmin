@@ -2,7 +2,7 @@
   <div class="form_box">
     <div class="mb10">
       <el-button type="primary" plain @click="fileDown">导出</el-button>
-      <el-button type="primary" @click="onSubmit">保存</el-button>
+      <!-- <el-button type="primary" @click="onSubmit">保存</el-button> -->
     </div>
     <div>
       <el-form style="max-width: 600px" :model="screenData" label-width="auto" label-position="top">
