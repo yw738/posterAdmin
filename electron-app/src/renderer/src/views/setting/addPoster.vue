@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <el-row id="content_box" :gutter="16">
-      <el-col :span="18">
+      <el-col :span="18" style="height: 100%">
         <el-card
           class="h100"
           shadow="never"
@@ -17,8 +17,8 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="6">
-        <el-card class="h100" shadow="never" :body-style="{ padding: '15px' }">
+      <el-col :span="6" style="height: 100%">
+        <el-card class="h100" shadow="never" :body-style="{ padding: '10px ', height: '100%' }">
           <PosterForm />
         </el-card>
       </el-col>

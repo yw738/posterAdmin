@@ -56,13 +56,13 @@ let routes = [
       alwaysShow: true
     },
     children: [
-      {
-        path: 'setting',
-        name: 'setting',
-        meta: {
-          title: '生成列表'
-        }
-      },
+      // {
+      //   path: 'setting',
+      //   name: 'setting',
+      //   meta: {
+      //     title: '生成列表'
+      //   }
+      // },
       {
         path: 'addPoster',
         name: 'addPoster',

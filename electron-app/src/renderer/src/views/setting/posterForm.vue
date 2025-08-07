@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form_box">
     <div class="mb10">
       <el-button type="primary" plain @click="fileDown">导出</el-button>
       <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -186,10 +186,10 @@ let onSubmit = () => {}
 </script>
 
 <style lang="scss" scoped>
-.main {
-  width: calc(100% - 30px);
-  height: calc(100% - 30px);
-  margin: 15px auto;
+.form_box {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 #content_box {

@@ -11,7 +11,7 @@ const constantRoutes = [
   {
     path: '/manage',
     component: Layout,
-    redirect: '/manage/setting',
+    redirect: '/manage/addPoster',
     meta: {
       title: '设置',
       icon: 'security',
