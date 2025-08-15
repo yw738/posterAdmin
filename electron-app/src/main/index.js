@@ -6,8 +6,8 @@ import icon from '../../resources/icon.png?asset'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1680,
+    height: 800,
     show: false,
     icon: nativeImage.createFromPath(join(__dirname, './favicon.ico')),
     autoHideMenuBar: true,

@@ -2,12 +2,10 @@
   <div class="sidebar-logo-container" :class="{ collapse: collapse }">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
-        <h1 v-else class="sidebar-title">控制台</h1>
+        <img :src="logo" class="sidebar-logo" />
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
-        <h1 class="sidebar-title">控制台</h1>
+        <img :src="logo" class="sidebar-logo" />
       </router-link>
     </transition>
   </div>
@@ -25,8 +23,8 @@ const props = defineProps({
 
 const state = reactive({
   isCollapse: props.collapse,
-  // logo: new URL(`../../../assets/logo.png`, import.meta.url).href
-  logo: ''
+  logo: new URL(`../../../assets/logo.png`, import.meta.url).href
+  // logo: ''
 })
 
 const { logo } = toRefs(state)
@@ -56,8 +54,8 @@ const { logo } = toRefs(state)
     width: 100%;
 
     & .sidebar-logo {
-      width: 20px;
-      height: 20px;
+      width: 70%;
+      // height: 40px;
       vertical-align: middle;
     }
 

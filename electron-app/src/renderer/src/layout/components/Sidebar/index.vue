@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'has-logo': true }">
-    <logo :collapse="true" />
+    <logo :collapse="false" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"

@@ -18,7 +18,7 @@ import { ElMessageBox, ElMessage } from 'element-plus'
 
 // 图标依赖
 
-const userName = computed(() => 'Admin')
+const userName = computed(() => '管理员')
 </script>
 
 <style lang="scss" scoped>
