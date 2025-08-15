@@ -37,16 +37,16 @@ let routes = [
     redirect: '/dashboard',
     isOpen: true
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    roleId: 'crm',
-    meta: {
-      title: '系统首页',
-      icon: 'homepage',
-      affix: true
-    }
-  },
+  // {
+  //   path: '/dashboard',
+  //   name: 'dashboard',
+  //   roleId: 'crm',
+  //   meta: {
+  //     title: '系统首页',
+  //     icon: 'homepage',
+  //     affix: true
+  //   }
+  // },
   {
     path: '/manage',
     meta: {

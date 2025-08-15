@@ -112,7 +112,6 @@ const app = useAppStore()
 
 let screenData = computed(() => app.screenData)
 
-// provide('calsType', 'crm:clue:query:highSeas');
 const state = reactive({})
 
 let fileDown = async () => {
