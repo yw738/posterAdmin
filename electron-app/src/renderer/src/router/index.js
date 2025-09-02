@@ -38,13 +38,13 @@ const constantRoutes = [
         meta: { title: '生成海报' }
       }
     ]
-  },
-  {
-    path: '/dashboard',
-    component: () => import('./../views/dashboard/index.vue'),
-    name: 'dashboard',
-    meta: { title: '系统首页' }
   }
+  // {
+  //   path: '/dashboard',
+  //   component: () => import('./../views/dashboard/index.vue'),
+  //   name: 'dashboard',
+  //   meta: { title: '系统首页' }
+  // }
 ]
 
 // 创建路由
