@@ -20,6 +20,12 @@ const constantRoutes = [
     },
     children: [
       {
+        path: 'sethome',
+        component: () => import('./../views/setting/index.vue'),
+        name: 'sethome',
+        meta: { title: '首页设置' }
+      },
+      {
         path: 'setting',
         component: () => import('./../views/setting/index.vue'),
         name: 'setting',

@@ -50,12 +50,19 @@ let routes = [
   {
     path: '/manage',
     meta: {
-      title: '海报设置',
+      title: '设置',
       icon: 'security',
       hidden: false,
       alwaysShow: true
     },
     children: [
+      // {
+      //   path: 'sethome',
+      //   name: 'sethome',
+      //   meta: {
+      //     title: '首页设置'
+      //   }
+      // },
       // {
       //   path: 'setting',
       //   name: 'setting',
