@@ -26,11 +26,13 @@ import { ElMessageBox, ElMessage } from 'element-plus'
 import { mainApi } from '@/api/index.js'
 import Logo1Img from '@/assets/img/logo1.png'
 import LogoImg from '@/assets/img/logo2.png'
+import Logo3Img from '@/assets/img/pcbonline.png'
 import { useAppStore } from '@/store/app.js'
 const app = useAppStore()
 let defaultLogo = ref({
   scspcba_white: Logo1Img,
-  success_white: LogoImg
+  success_white: LogoImg,
+  pcbonline_white: Logo3Img
 })
 let logoValue = computed(() => app?.screenData?.logo)
 let size = computed(() => app?.screenData?.logoSize)

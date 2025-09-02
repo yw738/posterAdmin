@@ -1,7 +1,7 @@
 <template>
   <div class="form_box">
     <div class="mb10">
-      <el-button type="primary" style="width: 90px;" @click="fileDown"> 导出</el-button>
+      <el-button type="primary" style="width: 90px" @click="fileDown"> 导出</el-button>
       <!-- <el-button type="primary" @click="onSubmit">保存</el-button> -->
     </div>
     <div>
@@ -14,18 +14,20 @@
           </el-select>
         </el-form-item>
         <el-row :gutter="14">
-          <el-col :span="18">
+          <el-col :span="17">
             <el-form-item label="logo 设置" class="mb10">
               <el-select v-model="screenData.logo" placeholder="">
                 <el-option label="SCSPCBA 白底" value="scspcba_white" />
                 <el-option label="SUCCESS 白底" value="success_white" />
+                <el-option label="pcbonline 白底" value="pcbonline_white" />
+                <el-option label="旭森制造" value="xsjg_white" />
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="7">
             <el-form-item label="大小" class="mb10">
               <el-input-number
-                :controls="false"
+                controls-position="right"
                 v-model="screenData.logoSize"
                 :precision="0"
                 :step="1"
@@ -35,15 +37,15 @@
         </el-row>
 
         <el-row :gutter="14">
-          <el-col :span="18">
+          <el-col :span="17">
             <el-form-item label="公司名称" class="mb10">
               <el-input v-model="screenData.title" />
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="7">
             <el-form-item label="字号" class="mb10">
               <el-input-number
-                :controls="false"
+                controls-position="right"
                 v-model="screenData.titleSize"
                 :precision="0"
                 :step="1"
@@ -53,15 +55,15 @@
         </el-row>
 
         <el-row :gutter="14">
-          <el-col :span="18">
+          <el-col :span="17">
             <el-form-item label="欢迎语" class="mb10">
               <el-input v-model="screenData.welcomeName" />
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="7">
             <el-form-item label="字号" class="mb10">
               <el-input-number
-                :controls="false"
+                controls-position="right"
                 v-model="screenData.welcomeNameSize"
                 :precision="0"
                 :step="1"
