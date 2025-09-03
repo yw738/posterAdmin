@@ -29,57 +29,11 @@ import { useRoute } from 'vue-router'
 import SidebarItem from './SidebarItem.vue'
 import Logo from './Logo.vue'
 import variables from './../../../styles/variables.module.scss'
+import useStore from '@/store/route.js'
+const routeStore = useStore()
 
 const route = useRoute()
-let routes = [
-  {
-    path: '/',
-    redirect: '/dashboard',
-    isOpen: true
-  },
-  // {
-  //   path: '/dashboard',
-  //   name: 'dashboard',
-  //   roleId: 'crm',
-  //   meta: {
-  //     title: '系统首页',
-  //     icon: 'homepage',
-  //     affix: true
-  //   }
-  // },
-  {
-    path: '/manage',
-    meta: {
-      title: '设置',
-      icon: 'security',
-      hidden: false,
-      alwaysShow: true
-    },
-    children: [
-      // {
-      //   path: 'sethome',
-      //   name: 'sethome',
-      //   meta: {
-      //     title: '首页设置'
-      //   }
-      // },
-      // {
-      //   path: 'setting',
-      //   name: 'setting',
-      //   meta: {
-      //     title: '生成列表'
-      //   }
-      // },
-      {
-        path: 'addPoster',
-        name: 'addPoster',
-        meta: {
-          title: '生成海报'
-        }
-      }
-    ]
-  }
-]
+let routes = computed(() => routeStore.meunlist)
 const activeMenu = computed(() => {
   const { meta, path } = route
   // if set path, the sidebar will highlight the path you set

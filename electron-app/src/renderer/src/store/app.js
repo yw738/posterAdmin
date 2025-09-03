@@ -9,7 +9,7 @@ export const useAppStore = defineStore('app', {
       welcomeName: '热烈欢迎',
       welcomeNameSize: 130,
 
-      title: '深圳市瑞音博科技有限公司莅临参观',
+      title: '深圳某某有限公司莅临参观',
       titleSize: 106,
       bottomline: {
         txt1: '合作',

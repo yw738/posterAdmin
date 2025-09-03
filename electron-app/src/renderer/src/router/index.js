@@ -21,7 +21,7 @@ const constantRoutes = [
     children: [
       {
         path: 'sethome',
-        component: () => import('./../views/setting/index.vue'),
+        component: () => import('./../views/dashboard/set/index.vue'),
         name: 'sethome',
         meta: { title: '首页设置' }
       },
@@ -39,12 +39,12 @@ const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/dashboard',
-  //   component: () => import('./../views/dashboard/index.vue'),
-  //   name: 'dashboard',
-  //   meta: { title: '系统首页' }
-  // }
+  {
+    path: '/dashboard',
+    component: () => import('./../views/dashboard/home/index.vue'),
+    name: 'dashboard',
+    meta: { title: '系统首页' }
+  },
   {
     path: '/login',
     component: () => import('./../views/login/index.vue'),

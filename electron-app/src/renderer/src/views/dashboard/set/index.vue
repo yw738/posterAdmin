@@ -8,18 +8,15 @@
           ref="leftBox"
           :body-style="{ padding: '0', height: '100%' }"
         >
-          <div id="viewBox" :style="headerStyle">
-            <Logo />
-            <Welcome />
+          <!-- <div id="viewBox" :style="headerStyle">
             <ComName />
-            <BottomLine />
-            <BottomTxt />
-          </div>
+          </div> -->
+          <HomeCom :style="headerStyle" />
         </el-card>
       </el-col>
       <el-col :span="6" style="height: 100%">
         <el-card class="h100" shadow="never" :body-style="{ padding: '10px ', height: '100%' }">
-          <PosterForm />
+          <!-- <PosterForm /> -->
         </el-card>
       </el-col>
     </el-row>
@@ -28,7 +25,7 @@
 
 <script setup>
 /**
- * 生成海报
+ * 首页设置
  */
 import {
   onMounted,
@@ -42,11 +39,7 @@ import {
 } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { mainApi } from '@/api/index.js'
-import Logo from './poster/logo.vue'
-import BottomLine from './poster/bottomLine.vue'
-import BottomTxt from './poster/bottomTxt.vue'
-import Welcome from './poster/welcome.vue'
-import ComName from './poster/comName.vue'
+import HomeCom from './left/index.vue'
 import PosterForm from './posterForm.vue'
 import { useAppStore } from '@/store/app.js'
 const app = useAppStore()
@@ -56,17 +49,6 @@ let headerStyle = ref({
   'transform-origin': ' 0 0',
   'font-family': 'AlibabaPuHuiTi-Heavy'
 })
-
-watch(
-  () => app.templateType,
-  () => {
-    if (app.templateType == 'cn') {
-      headerStyle.value['font-family'] = `AlibabaPuHuiTi-Heavy`
-    } else if (app.templateType == 'en') {
-      headerStyle.value['font-family'] = `AlibabaSans-Black`
-    }
-  }
-)
 
 // provide('calsType', 'crm:clue:query:highSeas');
 const state = reactive({
@@ -163,7 +145,7 @@ const onSubmit = () => {
 }
 
 #viewBox {
-  background-image: url('@/assets/design/design_bg.png');
+  background-image: url('@/assets/design/home_bg.png');
   background-size: 100% 100%;
   width: 1920px;
   height: 1080px;

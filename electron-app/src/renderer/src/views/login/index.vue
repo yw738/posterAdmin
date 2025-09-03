@@ -45,23 +45,29 @@
 </template>
 <script setup>
 import { onBeforeMount, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ElForm, ElMessage, ElMessageBox } from 'element-plus'
+
+const router = useRouter()
+
 let username = ref()
 let submit = () => {
   const username = document.getElementById('username').value
   const password = document.getElementById('password').value
 
   if (username.trim() === '') {
-    alert('请输入用户名')
+    ElMessage.error('请输入用户名')
     return
   }
 
   if (password.length < 6) {
-    alert('密码长度不能少于6位')
+    ElMessage.error('密码长度不能少于6位')
     return
   }
 
   // 模拟登录成功
-  alert('登录成功！')
+  // alert('登录成功！')
+  router.replace('/manage')
 }
 </script>
 <style scoped>
