@@ -2,17 +2,10 @@
   <div class="form_box">
     <div class="mb10">
       <el-button type="primary" style="width: 90px" @click="fileDown"> 导出</el-button>
-      <!-- <el-button type="primary" @click="onSubmit">保存</el-button> -->
+      <el-button type="primary" @click="onSubmit">保存</el-button>
     </div>
     <div>
       <el-form style="max-width: 600px" :model="screenData" label-width="auto" label-position="top">
-        <!-- <el-divider border-style="dashed" /> -->
-        <el-form-item label="模板" class="mb10">
-          <el-select v-model="app.templateType" @change="handChange">
-            <el-option label="中文模板" value="cn" />
-            <el-option label="英文模板" value="en" />
-          </el-select>
-        </el-form-item>
         <el-row :gutter="14">
           <el-col :span="17">
             <el-form-item label="logo 设置" class="mb10">
@@ -141,45 +134,7 @@ let fileDown = async () => {
 
 onMounted(() => {})
 
-let tempObj = {
-  en: {
-    welcomeNameSize: 112,
-    titleSize: 130,
-    welcomeName: 'Warmly Welcome',
-    title: 'Forest Group to visit',
-    bottomline: {
-      txt1: 'cooperate',
-      txt2: 'innovate',
-      txt3: 'break through',
-      txt4: 'win-win'
-    },
-    bottom: {
-      txtleft: 'Shenzhen',
-      txtright: 'China'
-    }
-  },
-  cn: {
-    welcomeNameSize: 130,
-    titleSize: 106,
-    welcomeName: '热烈欢迎',
-    title: '深圳某某有限公司莅临参观',
-    bottomline: {
-      txt1: '合作',
-      txt2: '创新',
-      txt3: '突破',
-      txt4: '共赢'
-    },
-    bottom: {
-      txtleft: '深圳',
-      txtright: '中国'
-    }
-  }
-}
-let templateType = computed(() => app.templateType)
-let handChange = (type) => {
-  let s = tempObj[type]
-  Object.assign(app.screenData, s)
-}
+let handChange = (type) => {}
 
 onBeforeMount(() => {})
 

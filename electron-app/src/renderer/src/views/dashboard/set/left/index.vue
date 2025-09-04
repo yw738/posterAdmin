@@ -2,12 +2,14 @@
   <div id="viewBox">
     <ComName />
     <Weather />
+    <Welcome />
   </div>
 </template>
 
 <script setup>
 import ComName from './comName.vue'
 import Weather from './weather.vue'
+import Welcome from './welcome.vue'
 </script>
 
 <style>

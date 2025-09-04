@@ -8,15 +8,12 @@
           ref="leftBox"
           :body-style="{ padding: '0', height: '100%' }"
         >
-          <!-- <div id="viewBox" :style="headerStyle">
-            <ComName />
-          </div> -->
           <HomeCom :style="headerStyle" />
         </el-card>
       </el-col>
       <el-col :span="6" style="height: 100%">
         <el-card class="h100" shadow="never" :body-style="{ padding: '10px ', height: '100%' }">
-          <!-- <PosterForm /> -->
+          <SetForm />
         </el-card>
       </el-col>
     </el-row>
@@ -40,7 +37,7 @@ import {
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { mainApi } from '@/api/index.js'
 import HomeCom from './left/index.vue'
-import PosterForm from './posterForm.vue'
+import SetForm from './setForm.vue'
 import { useAppStore } from '@/store/app.js'
 const app = useAppStore()
 let leftBox = ref(null)
