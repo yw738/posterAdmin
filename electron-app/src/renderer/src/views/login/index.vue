@@ -71,7 +71,7 @@ let submit = () => {
     })
     .then(() => {
       ElMessage.success('登录成功！')
-      router.replace('/manage')
+      router.replace('/sethome')
     })
   // 模拟登录成功
   // alert('登录成功！')

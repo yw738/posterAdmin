@@ -4,7 +4,11 @@
       <el-button type="primary" style="width: 90px" @click="fileDown"> 导出</el-button>
 
       <el-button @click="init">重置</el-button>
-      <el-button type="primary" @click="onSubmit">保存</el-button>
+      <el-popconfirm class="box-item" title="确定保存吗" @confirm="onSubmit">
+        <template #reference>
+          <el-button type="primary">保存</el-button>
+        </template>
+      </el-popconfirm>
     </div>
     <div>
       <el-form style="max-width: 600px" :model="screenData" label-width="auto" label-position="top">

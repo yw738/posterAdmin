@@ -5,7 +5,7 @@ const Layout = () => import('./../layout/index.vue')
 const constantRoutes = [
   {
     path: '/',
-    redirect: '/manage'
+    redirect: '/login'
   },
 
   {
