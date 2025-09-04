@@ -1,17 +1,10 @@
 import { defineStore } from 'pinia'
+import { ElForm, ElMessage, ElMessageBox } from 'element-plus'
 
-const useUserStore = defineStore('user', {
+export const useUserStore = defineStore('user', {
   state: () => ({
-    token: '',
-    refreshToken: jsCookie.get('refreshToken') || '',
-    nickname: '',
-    userId: '',
-    avatar: '',
-    roles: [],
-    perms: [],
-    userInfo: {}, //用户信息
-    // userLevel: null as any,//crm 的用户级别 1 => 个人 ， 2=> 所属部门及其他
-    userLevel: 2 //crm 的用户级别 1 => 个人 ， 2=> 所属部门及其他
+    token: localStorage.getItem('token'),
+    userInfo: {} //用户信息
   }),
   actions: {
     async RESET_STATE() {
@@ -27,7 +20,68 @@ const useUserStore = defineStore('user', {
      */
     login(userInfo = {}) {
       const { username, password } = userInfo
-      return new Promise((resolve, reject) => {})
+      return new Promise((resolve, reject) => {
+        fetch('https://scswoker.yff738751286.workers.dev/api/login', {
+          method: 'POST', // 或 POST、PUT 等
+          headers: {
+            'Content-Type': 'application/json' // 根据需要添加
+          },
+          body: JSON.stringify({ username: username, password: password })
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            const { token, success, message } = response
+            if (success) {
+              window.localStorage.setItem('token', token)
+              this.token = token
+              resolve()
+            } else {
+              ElMessage.error(message)
+              reject()
+            }
+          })
+          .catch((error) => console.error('Error:', error))
+      })
+    },
+    init() {
+      return new Promise((resolve, reject) => {
+        fetch('https://scswoker.yff738751286.workers.dev/api/sites', {
+          method: 'GET', // 或 POST、PUT 等
+          headers: {
+            'Content-Type': 'application/json' // 根据需要添加
+          }
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            const { data = [] } = response
+            resolve(data[0])
+          })
+          .catch((error) => console.error('Error:', error))
+      })
+    },
+    edit(params) {
+      return new Promise((resolve, reject) => {
+        const token = localStorage.getItem('token') // 假设 token 存在 localStorage 中
+        if (!token) {
+          reject()
+          return
+        }
+
+        fetch('https://scswoker.yff738751286.workers.dev/api/update', {
+          method: 'POST', // 或 POST、PUT 等
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json' // 根据需要添加
+          },
+          body: JSON.stringify(params)
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            const { data } = response
+            resolve(data)
+          })
+          .catch((error) => console.error('Error:', error))
+      })
     },
     /**
      *  用refreshToken 去换取新的 token
@@ -43,7 +97,6 @@ const useUserStore = defineStore('user', {
     resetToken() {
       return new Promise((resolve) => {
         this.token = ''
-        this.refreshToken = ''
         this.userInfo = {}
         // this.RESET_STATE();
         resolve(null)
@@ -51,5 +104,3 @@ const useUserStore = defineStore('user', {
     }
   }
 })
-
-export default useUserStore

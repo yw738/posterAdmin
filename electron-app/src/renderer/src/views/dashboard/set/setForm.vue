@@ -1,95 +1,88 @@
 <template>
-  <div class="form_box">
+  <div class="form_box" v-loading="loading">
     <div class="mb10">
       <el-button type="primary" style="width: 90px" @click="fileDown"> 导出</el-button>
+
+      <el-button @click="init">重置</el-button>
       <el-button type="primary" @click="onSubmit">保存</el-button>
     </div>
     <div>
       <el-form style="max-width: 600px" :model="screenData" label-width="auto" label-position="top">
         <el-row :gutter="14">
           <el-col :span="17">
-            <el-form-item label="logo 设置" class="mb10">
-              <el-select v-model="screenData.logo" placeholder="">
-                <el-option label="SCSPCBA 白底" value="scspcba_white" />
-                <el-option label="SUCCESS 白底" value="success_white" />
-                <el-option label="pcbonline 白底" value="pcbonline_white" />
-                <el-option label="旭森制造" value="xsjg_white" />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="7">
-            <el-form-item label="大小" class="mb10">
-              <el-input-number
-                controls-position="right"
-                v-model="screenData.logoSize"
-                :precision="0"
-                :step="1"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-
-        <el-row :gutter="14">
-          <el-col :span="17">
             <el-form-item label="公司名称" class="mb10">
-              <el-input v-model="screenData.title" />
+              <el-input v-model="screenData.title_cn" />
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="字号" class="mb10">
               <el-input-number
                 controls-position="right"
-                v-model="screenData.titleSize"
+                v-model="screenData.title_cn_size"
                 :precision="0"
                 :step="1"
               />
             </el-form-item>
           </el-col>
-        </el-row>
-
-        <el-row :gutter="14">
           <el-col :span="17">
-            <el-form-item label="欢迎语" class="mb10">
-              <el-input v-model="screenData.welcomeName" />
+            <el-form-item label="公司英文" class="mb10">
+              <el-input v-model="screenData.title_en" />
             </el-form-item>
           </el-col>
           <el-col :span="7">
             <el-form-item label="字号" class="mb10">
               <el-input-number
                 controls-position="right"
-                v-model="screenData.welcomeNameSize"
+                v-model="screenData.title_en_size"
                 :precision="0"
                 :step="1"
               />
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="底部词" class="mb10">
+        <el-form-item label="是否显示欢迎语" class="mb10">
+          <el-radio-group v-model="screenData.is_welcome">
+            <el-radio :value="1" size="large">显示</el-radio>
+            <el-radio :value="0" size="large">不显示</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <template v-if="screenData.is_welcome === 1">
           <el-row :gutter="14">
-            <el-col :span="12" class="mb10">
-              <el-input v-model="screenData.bottomline.txt1" />
+            <el-col :span="17">
+              <el-form-item label="欢迎语" class="mb10">
+                <el-input v-model="screenData.welcome_cn" />
+              </el-form-item>
             </el-col>
-            <el-col :span="12" class="mb10">
-              <el-input v-model="screenData.bottomline.txt2" />
-            </el-col>
-            <el-col :span="12">
-              <el-input v-model="screenData.bottomline.txt3" />
-            </el-col>
-            <el-col :span="12">
-              <el-input v-model="screenData.bottomline.txt4" />
+            <el-col :span="7">
+              <el-form-item label="字号" class="mb10">
+                <el-input-number
+                  controls-position="right"
+                  v-model="screenData.welcome_cn_size"
+                  :precision="0"
+                  :step="1"
+                />
+              </el-form-item>
             </el-col>
           </el-row>
-        </el-form-item>
-        <el-form-item label="地区" class="mb10">
+
           <el-row :gutter="14">
-            <el-col :span="12">
-              <el-input v-model="screenData.bottom.txtleft" />
+            <el-col :span="17">
+              <el-form-item label="欢迎语英文" class="mb10">
+                <el-input v-model="screenData.welcome_en" />
+              </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-input v-model="screenData.bottom.txtright" />
+            <el-col :span="7">
+              <el-form-item label="字号" class="mb10">
+                <el-input-number
+                  controls-position="right"
+                  v-model="screenData.welcome_en_size"
+                  :precision="0"
+                  :step="1"
+                />
+              </el-form-item>
             </el-col>
           </el-row>
-        </el-form-item>
+        </template>
       </el-form>
     </div>
   </div>
@@ -97,15 +90,18 @@
 
 <script setup>
 /**
- * 生成海报
+ * 获取云端的配置
  */
 import { onMounted, onBeforeMount, computed, reactive, ref } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import html2canvas from 'html2canvas'
 import { useAppStore } from '@/store/app.js'
+import { useUserStore } from '@/store/user.js'
 const app = useAppStore()
-
-let screenData = computed(() => app.screenData)
+const user = useUserStore()
+let screenData = computed(() => app.setHomeData)
+// let screenData = computed(() => app.screenData)
+const loading = ref(false)
 
 const state = reactive({})
 
@@ -132,13 +128,29 @@ let fileDown = async () => {
   })
 }
 
+let init = () => {
+  loading.value = true
+  user.init().then((res) => {
+    app.setHomeData = res
+    loading.value = false
+  })
+}
 onMounted(() => {})
 
 let handChange = (type) => {}
 
-onBeforeMount(() => {})
+onBeforeMount(() => {
+  init()
+})
 
-let onSubmit = () => {}
+let onSubmit = () => {
+  loading.value = true
+  let params = JSON.parse(JSON.stringify(app.setHomeData))
+
+  user.edit(params).then((res) => {
+    loading.value = false
+  })
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,15 +1,10 @@
 <template>
-  <div
-    id="welcome"
-    :style="{
-      'font-size': size + 'px'
-    }"
-  >
+  <div id="welcome">
     <div class="flexCen cnclass">
-      <span>{{ cnTitle }}</span>
+      <span :style="{ 'font-size': size + 'px' }">{{ cnTitle }}</span>
     </div>
     <div class="flexCen enClass">
-      <span>{{ enTitle }}</span>
+      <span :style="{ 'font-size': size2 + 'px' }">{{ enTitle }}</span>
     </div>
   </div>
 </template>
@@ -21,10 +16,11 @@ import { onMounted, onBeforeMount, computed } from 'vue'
 import { useAppStore } from '@/store/app.js'
 const app = useAppStore()
 
-let cnTitle = computed(() => '旭森智造工业互联(深圳)有限公司')
-let enTitle = computed(() => 'Success Circuits Group Limited')
+let cnTitle = computed(() => app?.setHomeData?.title_cn)
+let enTitle = computed(() => app?.setHomeData?.title_en)
 
-let size = computed(() => app?.screenData?.titleSize)
+let size = computed(() => app?.setHomeData?.title_cn_size)
+let size2 = computed(() => app?.setHomeData?.title_en_size)
 </script>
 
 <style lang="scss" scoped>

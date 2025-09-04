@@ -18,18 +18,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-
+import { ref, onBeforeMount } from 'vue'
 import ScaleScreen from '@/views/scale-screen/index'
-
 import HomeCom from '@/views/dashboard/set/left/index.vue'
+import { useUserStore } from '@/store/user.js'
+import { useAppStore } from '@/store/app.js'
+const app = useAppStore()
+const user = useUserStore()
 
+onBeforeMount(() => {
+  user.init().then((res) => {
+    app.setHomeData = res
+  })
+})
 const wrapperStyle = {}
 let isScale = ref(true)
 </script>
 
 <style scoped>
-.home_box{
+.home_box {
   /* background-color: #0E59B6; */
 }
 </style>

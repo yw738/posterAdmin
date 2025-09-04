@@ -6,18 +6,14 @@
     }"
     class="flexCen"
   >
-    <div class="welcome_card">
-      <div class="welcome_cn">欢迎君得(深圳)科技有限公司莅临参观</div>
-      <div class="welcome_en">Welcome Mr. Zhang to our company</div>
+    <div class="welcome_card" v-if="is_welcome">
+      <div class="welcome_cn" :style="{ 'font-size': size + 'px' }">{{ welcomeCn }}</div>
+      <div class="welcome_en" :style="{ 'font-size': size2 + 'px' }">{{ welcomeEn }}</div>
     </div>
-    <div class="yulu" v-if="false">
-      <div class=" ">
-        <span>成功并非偶然，而是每一次坚持的积累。</span>
-        <span class="zuozhe">—托马斯·爱迪生 </span>
-      </div>
-      <div class=" ">
-        <span>失败并不可怕，可怕的是停止尝试。</span>
-        <span class="zuozhe">—乔治·伯纳德·肖 </span>
+    <div class="yulu" v-else>
+      <div v-for="(item, index) in yuluArr" :key="index">
+        <span>{{ item.quote }}</span>
+        <!-- <span class="zuozhe">—{{ item.author }}</span> -->
       </div>
     </div>
   </div>
@@ -26,12 +22,37 @@
 /**
  * 右侧 底部文字
  */
-import { computed } from 'vue'
+import { computed, onBeforeMount, onBeforeUnmount, ref } from 'vue'
 import { useAppStore } from '@/store/app.js'
+import { extractRandomData } from './getMrMsg.js'
 const app = useAppStore()
 
-let welcomeName = computed(() => app?.screenData?.welcomeName)
-let size = computed(() => app?.screenData?.welcomeNameSize)
+let is_welcome = computed(() => app?.setHomeData?.is_welcome === 1)
+let welcomeCn = computed(() => app?.setHomeData?.welcome_cn)
+let welcomeEn = computed(() => app?.setHomeData?.welcome_en)
+let size = computed(() => app?.setHomeData?.welcome_cn_size)
+let size2 = computed(() => app?.setHomeData?.welcome_en_size)
+
+let timer = null
+let yuluArr = ref([
+  {
+    quote: '成功并非偶然，而是每一次坚持的积累。',
+    author: '托马斯·爱迪生'
+  },
+  {
+    quote: '失败并不可怕，可怕的是停止尝试。',
+    author: '乔治·伯纳德·肖'
+  }
+])
+onBeforeMount(() => {
+  yuluArr.value = extractRandomData()
+  timer = setInterval(() => {
+    yuluArr.value = extractRandomData()
+  }, 600000)
+})
+onBeforeUnmount(() => {
+  clearInterval(timer)
+})
 </script>
 
 <style lang="scss" scoped>

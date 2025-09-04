@@ -5,23 +5,49 @@
 
       <!-- 顶部：日期和城市 -->
       <div class="top">
-        <div>广东 · 宝安区</div>
+        <div>{{ weatherData.province }} · {{ weatherData.city }}</div>
       </div>
-      <div class="top2">2025-09-03 17:30</div>
+      <div class="top2">{{ weatherData.reporttime }}</div>
       <!-- 中间：温度 + 天气信息 -->
       <div class="mid">
-        <div class="temp-now">29°</div>
+        <div class="temp-now">{{ weatherData.temperature }}°</div>
         <div class="weather-info">
-          <div class="desc">多云</div>
-          <div>湿度 82%</div>
-          <div>西风 ≤3级</div>
+          <div class="desc">{{ weatherData.weather }}</div>
+          <div>湿度 {{ weatherData.humidity }}%</div>
+          <div>{{ weatherData.winddirection }}风 {{ weatherData.windpower }}</div>
         </div>
       </div>
     </article>
   </div>
 </template>
 
-<script></script>
+<script setup>
+import { computed, onBeforeMount, onBeforeUnmount, ref } from 'vue'
+
+let weatherData = ref({})
+let init = () => {
+  let key = '5f0c6104150c1b405385b9abba33313f'
+  let city = '440306'
+  fetch(`https://restapi.amap.com/v3/weather/weatherInfo?key=${key}&city=${city}`, {
+    method: 'GET'
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      weatherData.value = data.lives[0]
+    })
+    .catch((error) => console.error('Error:', error))
+}
+let timer = null
+onBeforeMount(() => {
+  init()
+  timer = setInterval(() => {
+    init()
+  }, 600000)
+})
+onBeforeUnmount(() => {
+  timer && clearInterval(timer)
+})
+</script>
 
 <style scoped>
 .weather_box {

@@ -7,38 +7,36 @@
           <h1>欢迎登录</h1>
         </div>
 
-        <form>
-          <div class="input-group">
-            <label for="username">用户名</label>
-            <div class="input-icon">
-              <i class="fas fa-user"></i>
-              <input
-                type="text"
-                id="username"
-                class="input-field"
-                placeholder="请输入用户名"
-                required
-                v-model="username"
-              />
-            </div>
+        <div class="input-group">
+          <label for="username">用户名</label>
+          <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="username"
+              class="input-field"
+              placeholder="请输入用户名"
+              required
+              v-model="username"
+            />
           </div>
+        </div>
 
-          <div class="input-group">
-            <label for="password">密码</label>
-            <div class="input-icon">
-              <i class="fas fa-lock"></i>
-              <input
-                type="password"
-                id="password"
-                class="input-field"
-                placeholder="请输入密码"
-                required
-              />
-            </div>
+        <div class="input-group">
+          <label for="password">密码</label>
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              class="input-field"
+              placeholder="请输入密码"
+              required
+            />
           </div>
+        </div>
 
-          <button class="btn" @click="submit">登录</button>
-        </form>
+        <button class="btn" @click="submit">登录</button>
       </div>
     </div>
   </div>
@@ -47,7 +45,8 @@
 import { onBeforeMount, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElForm, ElMessage, ElMessageBox } from 'element-plus'
-
+import { useUserStore } from '@/store/user.js'
+const user = useUserStore()
 const router = useRouter()
 
 let username = ref()
@@ -65,9 +64,17 @@ let submit = () => {
     return
   }
 
+  user
+    .login({
+      username,
+      password
+    })
+    .then(() => {
+      ElMessage.success('登录成功！')
+      router.replace('/manage')
+    })
   // 模拟登录成功
   // alert('登录成功！')
-  router.replace('/manage')
 }
 </script>
 <style scoped>
