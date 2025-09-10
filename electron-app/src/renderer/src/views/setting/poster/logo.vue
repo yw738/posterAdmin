@@ -43,7 +43,7 @@ let size = computed(() => app?.screenData?.logoSize)
 // 留接口 后续可以新增自定义的logo
 let list = computed(() => ({ ...defaultLogo.value }))
 let showLogo = computed(() => {
-  return list.value[logoValue.value]
+  return list.value[logoValue.value] || ''
 })
 </script>
 

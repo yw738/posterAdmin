@@ -21,6 +21,7 @@
                 <el-option label="SUCCESS 白底" value="success_white" />
                 <el-option label="pcbonline 白底" value="pcbonline_white" />
                 <el-option label="旭森制造" value="xsjg_white" />
+                <el-option label="去掉Logo" value="no_logo" />
               </el-select>
             </el-form-item>
           </el-col>
