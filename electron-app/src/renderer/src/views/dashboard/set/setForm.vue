@@ -1,7 +1,8 @@
 <template>
   <div class="form_box" v-loading="loading">
     <div class="mb10">
-      <el-button type="primary" style="width: 90px" @click="fileDown"> 导出</el-button>
+      <el-button type="primary" @click="fileDown"> 导出</el-button>
+      <el-button type="primary" @click="openUrl"> 预览</el-button>
 
       <el-button @click="init">重置</el-button>
       <el-popconfirm class="box-item" title="确定保存吗" @confirm="onSubmit">
@@ -97,7 +98,6 @@
  * 获取云端的配置
  */
 import { onMounted, onBeforeMount, computed, reactive, ref } from 'vue'
-import { ElMessageBox, ElMessage } from 'element-plus'
 import html2canvas from 'html2canvas'
 import { useAppStore } from '@/store/app.js'
 import { useUserStore } from '@/store/user.js'
@@ -106,14 +106,15 @@ const user = useUserStore()
 let screenData = computed(() => app.setHomeData)
 // let screenData = computed(() => app.screenData)
 const loading = ref(false)
-
+import { useRoute, useRouter } from 'vue-router'
+const router = useRouter()
 const state = reactive({})
 
 let fileDown = async () => {
-  let element = document.querySelector('#viewBox')
+  let element = document.querySelector('#viewBox2')
   html2canvas(element, {
     onclone: function (documentClone) {
-      documentClone.getElementById('viewBox').style.transform = 'scale(1)'
+      documentClone.getElementById('viewBox2').style.transform = 'scale(1)'
     },
     scale: window.devicePixelRatio * 3
   }).then((canvas) => {
@@ -122,7 +123,7 @@ let fileDown = async () => {
       a.style.display = 'none'
       const link = window.URL.createObjectURL(blob)
       a.href = link
-      a.download = '欢迎大屏_' + screenData.value.title
+      a.download = '欢迎大屏_首页'
       a.click()
       a = null
       setTimeout(() => {
@@ -141,7 +142,10 @@ let init = () => {
 }
 onMounted(() => {})
 
-let handChange = (type) => {}
+let openUrl = () => {
+  // router.push('/dashboard')
+  window.open('/#/dashboard', '_blank')
+}
 
 onBeforeMount(() => {
   init()

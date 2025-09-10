@@ -1,5 +1,5 @@
 <template>
-  <div id="viewBox">
+  <div id="viewBox2">
     <ComName />
     <Weather />
     <Welcome />
@@ -13,7 +13,7 @@ import Welcome from './welcome.vue'
 </script>
 
 <style>
-#viewBox {
+#viewBox2 {
   background-image: url('@/assets/design/home_bg.png');
   background-size: 100% 100%;
   width: 1920px;

@@ -24,7 +24,7 @@
           <template #default="scope">
             <!-- plain -->
             <el-button type="primary" size="small" @click="addRelate(scope.row)">
-              导出
+              导出图片
             </el-button>
           </template>
         </el-table-column>

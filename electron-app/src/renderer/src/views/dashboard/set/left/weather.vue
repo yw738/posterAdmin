@@ -1,7 +1,7 @@
 <template>
   <div class="weather_box">
-    <article class="weather-card cloudy">
-      <div class="cloud"></div>
+    <article class="weather-card ">
+      <!-- <div class="cloud"></div> -->
 
       <!-- 顶部：日期和城市 -->
       <div class="top">
@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  animation: fadeIn 0.8s ease-out;
+  /* animation: fadeIn 0.8s ease-out; */
   color: var(--text-strong);
 }
 
@@ -99,7 +99,7 @@ onBeforeUnmount(() => {
     radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.25), transparent 70%),
     radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.18), transparent 70%);
   filter: blur(40px);
-  animation: cloudMove 60s linear infinite;
+  /* animation: cloudMove 60s linear infinite; */
   z-index: 0;
 }
 
