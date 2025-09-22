@@ -51,7 +51,7 @@
             <el-radio :value="0" size="large">不显示</el-radio>
           </el-radio-group>
         </el-form-item>
-        <template v-if="screenData.is_welcome === 1">
+        <template v-if="screenData?.is_welcome === 1">
           <el-row :gutter="14">
             <el-col :span="17">
               <el-form-item label="欢迎语" class="mb10">

@@ -3,9 +3,11 @@ const app = express();
 app.use(express.json()); //设置json解析
 const { expressjwt } = require("express-jwt");
 const log4js = require("./utils/logUtil.js");
-
+const cors = require("cors");
+// 允许所有来源跨域（不推荐生产环境使用）
+app.use(cors());
 // const sq = require("./utils/sqlite.js");
- 
+
 // 引入log4js配置，初始化全局对象
 const logger = log4js.getLogger("default"); // 使用默认类别
 global.logger = logger; // 赋值给全局对象【logger】，也可以直接替换【console】
@@ -61,8 +63,8 @@ app.use(
     // 除去前綴為 /sApi 的請求都有 jwt 鑒權
     path: [
       // /^\//,
-      // /^\/sApi\//,
-       /^\/api\//
+      /^\/sApi\//,
+      //  /^\/api\//
     ],
   })
 );

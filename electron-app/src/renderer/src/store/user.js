@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
-import { ElForm, ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage } from 'element-plus'
 
+let BASE_URL = 'http://localhost:8083'
 export const useUserStore = defineStore('user', {
   state: () => ({
     token: localStorage.getItem('token'),
@@ -21,7 +22,7 @@ export const useUserStore = defineStore('user', {
     login(userInfo = {}) {
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
-        fetch('https://scswoker.yff738751286.workers.dev/api/login', {
+        fetch(`${BASE_URL}/sApi/login`, {
           method: 'POST', // 或 POST、PUT 等
           headers: {
             'Content-Type': 'application/json' // 根据需要添加
@@ -45,7 +46,7 @@ export const useUserStore = defineStore('user', {
     },
     init() {
       return new Promise((resolve, reject) => {
-        fetch('https://scswoker.yff738751286.workers.dev/api/sites', {
+        fetch(`${BASE_URL}/sApi/sites`, {
           method: 'GET', // 或 POST、PUT 等
           headers: {
             'Content-Type': 'application/json' // 根据需要添加
@@ -53,8 +54,8 @@ export const useUserStore = defineStore('user', {
         })
           .then((response) => response.json())
           .then((response) => {
-            const { data = [] } = response
-            resolve(data[0])
+            const { data } = response
+            resolve(data)
           })
           .catch((error) => console.error('Error:', error))
       })
@@ -67,7 +68,7 @@ export const useUserStore = defineStore('user', {
           return
         }
 
-        fetch('https://scswoker.yff738751286.workers.dev/api/update', {
+        fetch(`${BASE_URL}/api/update`, {
           method: 'POST', // 或 POST、PUT 等
           headers: {
             Authorization: `Bearer ${token}`,
@@ -78,6 +79,7 @@ export const useUserStore = defineStore('user', {
           .then((response) => response.json())
           .then((response) => {
             const { data } = response
+            ElMessage.success('操作成功')
             resolve(data)
           })
           .catch((error) => console.error('Error:', error))
