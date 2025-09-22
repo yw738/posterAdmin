@@ -98,7 +98,7 @@ app.use(user);
 /**
  * 全局变量
  */
-const POST = 8083;
+const POST = 8099;
 global.globalData = {
   local: `http://localhost:${POST}`, //本项目的ip
   secretKey,

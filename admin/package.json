@@ -5,8 +5,7 @@
     "main": "app.js",
     "scripts": {
         "dev": "node app.js",
-        "build": "pkg app.js --target=node16 --platform=win",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "pkg app.js --target=node16 --platform=win"
     },
     "author": "",
     "license": "ISC",

@@ -4,7 +4,7 @@
 const jwt = require("jsonwebtoken");
 
 // 初始化
-const SimpleDB = require("../../utils/sqlite.js");
+const SimpleDB = require("../../sqlite.js");
 const sqliteDb = new SimpleDB();
 
 /**

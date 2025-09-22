@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
 
-let BASE_URL = 'http://localhost:8083'
+let BASE_URL = 'http://localhost:8099'
 export const useUserStore = defineStore('user', {
   state: () => ({
     token: localStorage.getItem('token'),

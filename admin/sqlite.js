@@ -1,6 +1,7 @@
 const path = require("path");
-const dbPath = path.resolve(__dirname, "node_sqllite.db");
-
+// const dbPath = path.resolve(__dirname, "node_sqllite.db");
+// const dbPath = path.resolve("./data", "node_sqllite.db");
+const dbPath = './data/node_sqllite.db';
 // db.js
 const Database = require("better-sqlite3");
 
