@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useUserStore } from '@/store/user.js'
 
 const Layout = () => import('./../layout/index.vue')
 
@@ -60,4 +61,24 @@ const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
+// 白名单路由
+router.beforeEach(async (to, from, next) => {
+  const user = useUserStore()
+  const hasToken = user.token
+  if (hasToken) {
+    if (to.path == '/login') {
+      next('/manage')
+    } else {
+      next()
+    }
+  } else {
+    const noGoArr = ['/login', '/dashboard']
+    // 登录成功，跳转到首页
+    if (noGoArr.includes(to.path)) {
+      next()
+    } else {
+      next('/login')
+    }
+  }
+})
 export default router

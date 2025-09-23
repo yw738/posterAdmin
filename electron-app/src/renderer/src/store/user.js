@@ -78,9 +78,15 @@ export const useUserStore = defineStore('user', {
         })
           .then((response) => response.json())
           .then((response) => {
-            const { data } = response
-            ElMessage.success('操作成功')
-            resolve(data)
+            const { data, status, message } = response
+            if (status == 401) {
+              ElMessage.error(message)
+              this.resetToken()
+              reject()
+            } else {
+              ElMessage.success('操作成功')
+              resolve()
+            }
           })
           .catch((error) => console.error('Error:', error))
       })
@@ -100,6 +106,7 @@ export const useUserStore = defineStore('user', {
       return new Promise((resolve) => {
         this.token = ''
         this.userInfo = {}
+        window.localStorage.clear()
         // this.RESET_STATE();
         resolve(null)
       })

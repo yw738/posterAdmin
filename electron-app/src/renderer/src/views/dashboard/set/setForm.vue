@@ -45,10 +45,10 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="是否显示欢迎语" class="mb10">
+        <el-form-item label="底部设置" class="mb10">
           <el-radio-group v-model="screenData.is_welcome">
-            <el-radio :value="1" size="large">显示</el-radio>
-            <el-radio :value="0" size="large">不显示</el-radio>
+            <el-radio :value="1" size="large">显示欢迎语</el-radio>
+            <el-radio :value="0" size="large">显示名言</el-radio>
           </el-radio-group>
         </el-form-item>
         <template v-if="screenData?.is_welcome === 1">
@@ -88,6 +88,11 @@
             </el-col>
           </el-row>
         </template>
+        <!-- <template v-if="screenData?.is_welcome === 0">
+          <el-row :gutter="14">
+            <el-button type="primary">切换名言内容</el-button>
+          </el-row>
+        </template> -->
       </el-form>
     </div>
   </div>
@@ -155,9 +160,15 @@ let onSubmit = () => {
   loading.value = true
   let params = JSON.parse(JSON.stringify(app.setHomeData))
 
-  user.edit(params).then((res) => {
-    loading.value = false
-  })
+  user
+    .edit(params)
+    .then((res) => {
+      loading.value = false
+    })
+    .catch(() => {
+      loading.value = false
+      router.replace('/login')
+    })
 }
 </script>
 

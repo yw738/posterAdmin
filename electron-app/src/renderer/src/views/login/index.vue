@@ -2,12 +2,7 @@
   <div class="box_sec">
     <div class="container">
       <div class="login-card">
-        <div class="logo">
-          <i class="fas fa-user-circle"></i>
-          <h1>欢迎登录</h1>
-        </div>
-
-        <div class="input-group">
+        <!-- <div class="input-group">
           <label for="username">用户名</label>
           <div class="input-icon">
             <i class="fas fa-user"></i>
@@ -20,10 +15,9 @@
               v-model="username"
             />
           </div>
-        </div>
+        </div> -->
 
         <div class="input-group">
-          <label for="password">密码</label>
           <div class="input-icon">
             <i class="fas fa-lock"></i>
             <input
@@ -32,6 +26,7 @@
               class="input-field"
               placeholder="请输入密码"
               required
+              @keyup.enter="submit"
             />
           </div>
         </div>
@@ -51,13 +46,13 @@ const router = useRouter()
 
 let username = ref()
 let submit = () => {
-  const username = document.getElementById('username').value
+  // const username = document.getElementById('username').value
   const password = document.getElementById('password').value
-
-  if (username.trim() === '') {
-    ElMessage.error('请输入用户名')
-    return
-  }
+  const username = 'admin'
+  // if (username.trim() === '') {
+  //   ElMessage.error('请输入用户名')
+  //   return
+  // }
 
   if (password.length < 6) {
     ElMessage.error('密码长度不能少于6位')
