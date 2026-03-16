@@ -28,6 +28,7 @@ import Logo1Img from '@/assets/img/logo1.png'
 import LogoImg from '@/assets/img/logo2.png'
 import Logo3Img from '@/assets/img/pcbonline.png'
 import Logo4Img from '@/assets/img/logo4.png'
+import Logo5Img from '@/assets/58dfa9036154638a6b3bf748713eb8b1.png'
 
 import { useAppStore } from '@/store/app.js'
 const app = useAppStore()
@@ -35,7 +36,8 @@ let defaultLogo = ref({
   scspcba_white: Logo1Img,
   success_white: LogoImg,
   pcbonline_white: Logo3Img,
-  xsjg_white: Logo4Img
+  xsjg_white: Logo4Img,
+  Logo5Img: Logo5Img
 })
 let logoValue = computed(() => app?.screenData?.logo)
 let size = computed(() => app?.screenData?.logoSize)
