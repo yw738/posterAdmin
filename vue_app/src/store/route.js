@@ -7,7 +7,16 @@ const useRouteStore = defineStore('route', {
         path: '/addPoster',
         name: 'addPoster',
         meta: {
-          title: '生成欢迎牌',
+          title: '模板生成欢迎牌',
+          icon: 'security',
+          affix: true
+        }
+      },
+       {
+        path: '/cusSet',
+        name: 'cusSet',
+        meta: {
+          title: '自定义欢迎牌',
           icon: 'security',
           affix: true
         }

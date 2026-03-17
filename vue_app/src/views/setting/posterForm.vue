@@ -22,7 +22,7 @@
                 <el-option label="pcbonline 白底" value="pcbonline_white" />
                 <el-option label="旭森制造" value="xsjg_white" />
                 <el-option label="去掉Logo" value="no_logo" />
-                <el-option label="cae" value="Logo5Img" />
+                <el-option label="CREATURE" value="Logo5Img" />
               </el-select>
             </el-form-item>
           </el-col>

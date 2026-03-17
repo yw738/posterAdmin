@@ -15,18 +15,24 @@ const constantRoutes = [
       alwaysShow: true
     },
     children: [
-      {
-        path: 'setting',
-        component: () => import('./../views/setting/index.vue'),
-        name: 'setting',
-        meta: { title: '生成列表' }
-      },
+      // {
+      //   path: '/setting',
+      //   component: () => import('./../views/setting/index.vue'),
+      //   name: 'setting',
+      //   meta: { title: '生成列表' }
+      // },
       {
         path: '/addPoster',
         component: () => import('./../views/setting/addPoster.vue'),
         name: 'addPoster',
         meta: { title: '生成欢迎牌' }
-      }
+      },
+      {
+        path: '/cusSet',
+        component: () => import('./../views/customSet/index.vue'),
+        name: 'cusSet',
+        meta: { title: '自定义生成' }
+      },
     ]
   }
 ];

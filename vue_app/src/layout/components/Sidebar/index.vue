@@ -41,7 +41,7 @@ const activeMenu = computed(() => {
     return meta.activeMenu
   }
 
-  console.log(path)
+  // console.log(path)
   return path
 })
 </script>
